@@ -1,0 +1,57 @@
+{
+  "name": "playwright-test-code-snippets",
+  "displayName": "Playwright Snippets Suite",
+  "license": "MIT",
+  "author": "Sumanth TP",
+  "publisher": "sumanthtps",
+  "description": "Playwright test code snippets",
+  "homepage": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode.git"
+  },
+  "bugs": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode/issues",
+  "icon": "images/playwright-logo.png",
+  "galleryBanner": {
+    "color": "#2b3137",
+    "theme": "dark"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "snippets",
+    "playwright",
+    "playwright-test",
+    "playwright-core"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/playwright.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/playwright.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/playwright.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/playwright.json"
+      }
+    ]
+  },
+  "dependencies": {
+    "@vscode/vsce": "^2.20.0",
+    "semantic-release": "^21.0.7",
+    "semantic-release-vsce": "^5.6.0"
+  }
+}

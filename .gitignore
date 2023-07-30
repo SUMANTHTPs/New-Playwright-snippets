@@ -1,0 +1,5 @@
+.vscode
+.vscodeignore
+CHANGELOG.md
+node_modules
+vsc-extension-quickstart.md

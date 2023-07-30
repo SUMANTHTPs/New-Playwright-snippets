@@ -1,0 +1,345 @@
+{
+    "Playwright import": {
+        "prefix": "p-imp",
+        "description": "Imports Playwright's test libraries",
+        "body": [
+            "",
+            "import { test } from '@playwright/test';",
+            "import { Team } from '@paeng/playwright-teams-info';",
+            "import {",
+            "EnvironmentType,",
+            "integrationTest,",
+            "RunEnvironment,",
+            "RunGeo,",
+            "RunType,",
+            "Severity,",
+            "} from '@paeng/playwright-solution';",
+            ""
+        ]
+    },
+    "Playwright describe block": {
+        "prefix": "p-td",
+        "description": "Playwright describe block",
+        "body": [
+            "test.describe('$1', () => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "Playwright test block": {
+        "prefix": "p-t",
+        "description": "Playwright test block",
+        "body": [
+            "test('$1', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});",
+            ""
+        ]
+    },
+    "Playwright integrationTest block": {
+        "prefix": "p-int",
+        "description": "Playwright integrationTest wrapper function block",
+        "body": [
+            "integrationTest(",
+            "    {",
+            "      envTypes: [EnvironmentType.MakerShell],",
+            "      runTypes: [RunType.Nightly],",
+            "      runEnvironments: [[RunEnvironment.Test, Severity.S3]],",
+            "      runGeos: [RunGeo.USA],",
+            "    },",
+            "    Team.${1|TableDesigner,ViewDesigner|},",
+            "    '${2:title}',",
+            "    async ({ page }) => {",
+            "       ${3:testSteps}",
+            "    });"
+        ]
+    },
+    "Playwright test.step block": {
+        "prefix": "p-ts",
+        "description": "Playwright test.step block",
+        "body": [
+            "await test.step('${1:title}', async () => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "Playwright beforeEach block": {
+        "prefix": "p-tbe",
+        "description": "Playwright beforeEach block",
+        "body": [
+            "test.beforeEach(async ({ ${1:page} }) => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "Playwright afterEach block": {
+        "prefix": "p-tae",
+        "description": "Playwright afterEach block",
+        "body": [
+            "test.afterEach(async ({ ${1:page} }) => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "Playwright beforeAll block": {
+        "prefix": "p-tba",
+        "description": "Playwright beforeAll block",
+        "body": [
+            "test.beforeAll(async ({ ${1:browser} }) => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "Playwright afterAll block": {
+        "prefix": "p-taa",
+        "description": "Playwright afterAll block",
+        "body": [
+            "test.afterAll(async ({ ${1:browser} }) => {",
+            "\t$2",
+            "});",
+            ""
+        ]
+    },
+    "page.click": {
+        "prefix": "p-clk",
+        "body": "await this.page.locator('${0:selector}').click();",
+        "description": "Clicks in the center of an element within the page"
+    },
+    "Click Selector": {
+        "prefix": "m-clks",
+        "description": "clicks selector util",
+        "body": [
+            "await clickSelector(this.page, ${1:selector});"
+        ]
+    },
+    "Click with index": {
+        "prefix": "p-clki",
+        "description": "clicks selector",
+        "body": [
+            "await this.page.locator(${1:selector}).nth(${2:index}).click();"
+        ]
+    },
+    "precise click with index": {
+        "prefix": "m-pclk",
+        "description": "clicks selector util",
+        "body": [
+            "await preciseClick(this.page, ${1:selector}, { index: ${2:index} });"
+        ]
+    },
+    "Navigate to Url": {
+        "prefix": "m-ntu",
+        "description": "navigates to the url util",
+        "body": [
+            "await navigateToUrl(this.page, ${1:url});"
+        ]
+    },
+    "page.title": {
+        "prefix": "p-title",
+        "description": "Returns the page's title",
+        "body": [
+            "await this.page.title();"
+        ]
+    },
+    "Verify page url": {
+        "prefix": "m-vpurl",
+        "description": "Verify page url util",
+        "body": [
+            "await verifyPageURL(this.page, ${1:url});"
+        ]
+    },
+    "Get page url": {
+        "prefix": "p-url",
+        "body": "await this.page.url();",
+        "description": "Returns the page's URL"
+    },
+    "Async class method": {
+        "prefix": "p-pam",
+        "description": "Playwright asynchronous method for class",
+        "body": [
+            "public async ${1:name}($2) {$3}"
+        ]
+    },
+    "Expect to be visible": {
+        "prefix": "p-etbv",
+        "description": "Playwright expect to be visible",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeVisible();"
+        ]
+    },
+    "Expect to be hidden": {
+        "prefix": "p-etbh",
+        "description": "Playwright expect to be visible",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeHidden();"
+        ]
+    },
+    "Expect to be Enabled": {
+        "prefix": "p-etbe",
+        "description": "Playwright expect to be visible",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeEnabled();"
+        ]
+    },
+    "Expect to be disabled": {
+        "prefix": "p-etbd",
+        "description": "Playwright expect to be visible",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeDisabled();"
+        ]
+    },
+    "Expect to be checked": {
+        "prefix": "p-etbc",
+        "description": "Playwright expect to be checked",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeChecked();"
+        ]
+    },
+    "Expect to be": {
+        "prefix": "p-etb",
+        "description": "Playwright expect something to be something",
+        "body": [
+            "expect($1).toBe($2);"
+        ]
+    },
+    "Playwright waitFor": {
+        "prefix": "p-wf",
+        "description": "Playwright wait for",
+        "body": [
+            "await this.page.locator(${1:selector}).waitFor($2);"
+        ]
+    },
+    "Playwright wait selector": {
+        "prefix": "p-wfs",
+        "description": "Playwright waitForSelector",
+        "body": [
+            "await this.page.waitForSelector(${0:selector});"
+        ]
+    },
+    "Playwright wait load state": {
+        "prefix": "p-wfls",
+        "description": "Playwright waitForLoad",
+        "body": [
+            "await this.page.waitForLoadState();"
+        ]
+    },
+    "Playwright wait load timeout": {
+        "prefix": "p-wft",
+        "description": "Playwright waitForTimeout",
+        "body": [
+            "await this.page.waitForTimeout(Timeout.$1);"
+        ]
+    },
+    "A11y check": {
+        "prefix": "m-a11y",
+        "description": "Playwright a11y check util",
+        "body": [
+            "if (a11yCheck) {",
+            "  await a11y(this.page);",
+            "}"
+        ]
+    },
+    "Playwright fill input": {
+        "prefix": "p-fill",
+        "description": "Playwright fill input",
+        "body": [
+            "await this.page.locator(${1:selector}).fill($2);"
+        ]
+    },
+    "Playwright type input": {
+        "prefix": "p-type",
+        "description": "Playwright type input",
+        "body": [
+            "await this.page.locator(${1:selector}).type($2);"
+        ]
+    },
+    "fill value in controls": {
+        "prefix": "m-fill",
+        "description": "Fill value in control util",
+        "body": [
+            "await fillValueInControl(this.page, ${1:inputSelector}, ${2:value});"
+        ]
+    },
+    "Selector isVisible": {
+        "prefix": "p-isv",
+        "description": "Selector is visble?",
+        "body": [
+            "await this.page.locator(${1:selector}).isVisible();"
+        ]
+    },
+    "Selector isHidden": {
+        "prefix": "p-ish",
+        "description": "Selector is hidden?",
+        "body": [
+            "await this.page.locator(${1:selector}).isHidden();"
+        ]
+    },
+    "Selector is checked": {
+        "prefix": "p-isc",
+        "description": "Selector is checked?",
+        "body": [
+            "await this.page.locator(${1:selector}).isChecked();"
+        ]
+    },
+    "Selector is enabled": {
+        "prefix": "p-isen",
+        "description": "Selector is enabled?",
+        "body": [
+            "await this.page.locator(${1:selector}).isEnabled();"
+        ]
+    },
+    "Selector is disabled": {
+        "prefix": "p-isd",
+        "description": "Selector is diabled?",
+        "body": [
+            "await this.page.locator(${1:selector}).isDisabled();"
+        ]
+    },
+    "Selector is editable": {
+        "prefix": "p-ised",
+        "description": "Selector is editable?",
+        "body": [
+            "await this.page.locator(${1:selector}).isEditable();"
+        ]
+    },
+    "POM Class": {
+        "prefix": "m-pom",
+        "description": "Playwright Page Object Model (POM) class structure",
+        "body": [
+            "import { navigateToUrl } from '@paeng/playwright-solution';",
+            "import { Page } from '@playwright/test';",
+            "",
+            "export class ${1:ClassName} {",
+            "  readonly page: Page;",
+            "",
+            "  constructor(page: Page) {",
+            "    this.page = page;",
+            "  }",
+            "",
+            "  public async ${2:methodName}() {}",
+            "",
+            "}"
+        ]
+    },
+    "POM Class with extend class": {
+        "prefix": "m-pome",
+        "description": "Playwright Page Object Model (POM) class structure with extended class",
+        "body": [
+            "import { navigateToUrl } from '@paeng/playwright-solution';",
+            "import { Page } from '@playwright/test';",
+            "",
+            "export class ${1:ClassName} extends ${2:extendClassName} {",
+            "  constructor(page: Page) {",
+            "    super(page);",
+            "  }",
+            "",
+            "  public async ${3:methodName}() {}",
+            "",
+            "}"
+        ]
+    }
+}
