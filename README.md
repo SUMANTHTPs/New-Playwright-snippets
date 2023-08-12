@@ -1,8 +1,8 @@
 # Playwright Snippets Suite🎭
 
 **Note**
-    - This snippets follows POM structure
-    - This extension is meant for `typescript` and `javascript` language.
+- This snippets follows Page object model
+- This extension is meant for `Typescript` and `Javascript` language.
 
 ## Getting Started
 This Visual Studio Code extension adds predefined useful code snippets for 🎭 [Playwright](https://github.com/microsoft/playwright).
@@ -15,7 +15,7 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 
 ## Requirements
 
-- Visual Studio Code (VS Code) version 1.60.0 or higher.
+- Visual Studio Code (VS Code) version 1.80.0 or higher.
 
 ## Installation
 
@@ -34,62 +34,87 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 
 ### Snippets List
 
-- `p-td`: test.describe Block
+#### Test block
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-td`                     | test.describe()                |
+| `p-t`                      | test()                         |
+| `p-ts`                     | test.step()                    |
+| `p-tbe`                    | test.beforeEach()              |
+| `p-tae`                    | test.afterEach()               |
+| `p-tba`                    | test.beforeAll()               |
+| `p-taa`                    | test.afterAll()                |
+| `p-tuse`                   | test.use()                     |
 
-- `p-t`: test Block
+#### Browser actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-browser-newContext`     | browser.newContext()           |
+| `p-browser-newPage`        | browser.newPage()              |
 
-- `p-ts`: test.step Block
+#### Context actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-context-newPage`        | context.newPage()              |
+| `p-context-pages`          | context.pages()                |
 
-- `p-tbe`: test.beforeEach
+#### Page actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-goto`                   | page.goto()                    |
+| `p-clk`                    | page.click()                   |
+| `p-dbclk`                  | page.dblclick()                |
+| `p-clki`                   | page.nth().click()             |
+| `p-chk`                    | page.check()                   |
+| `p-uchk`                   | page.uncheck()                 |
+| -------------------------- | ------------------------------ |
+| `p-title`                  | page.title()                   |
+| `p-url`                    | page.url()                     |
+| -------------------------- | ------------------------------ |
+| `p-fill`                   | page.fill()                    |
+| `p-type`                   | page.type()                    |
+| -------------------------- | ------------------------------ |
+| `p-isv`                    | page.isVisible()               |
+| `p-ish`                    | page.isHidden()                |
+| `p-isc`                    | page.isChecked()               |
+| `p-isen`                   | page.isEnabled()               |
+| `p-isd`                    | page.isDisabled()              |
+| `p-ised`                   | page.isEditable()              |
+| -------------------------- | ------------------------------ |
+| `p-getattr`                | page.getAttribute()            |
+| `p-itxt`                   | page.innerText()               |
+| `p-count`                  | page.count()                   |
+| `p-focus`                  | page.focus()                   |
+| `p-goBack`                 | page.goBack()                  |
+| `p-goFwd`                  | page.goForward()               |
 
-- `p-tae`: test.afterEach
 
-- `p-tba`: test.beforeAll
+#### Page assertion/expect actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-etbv`                   | page.toBeVisible()             |
+| `p-etbh`                   | page.toBeHidden()              |
+| `p-etbe`                   | page.toBeEnabled()             |
+| `p-etbd`                   | page.toBeDisabled()            |
+| `p-etbc`                   | page.toBeChecked()             |
+| `p-etb`                    | expect.toBe()             |
 
-- `p-taa`: test.afterAll
+#### Page wait actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-wf`                     | page.waitFor()                 |
+| `p-wfs`                    | page.waitForSelector()         |
+| `p-wfls`                   | page.waitForLoadState()        |
+| `p-wft`                    | page.waitForTimeout()          |
 
-- `p-clk`: page click
 
-- `p-clki`: click selector with index
 
-- `p-title`: Get page title
+#### Other actions
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
+| `p-pam`                    | public async method() {...}    |
+| `p-newPage`                | Handle new tab/ page           |
+| `p-newPopup`               | Handle popups                  |
 
-- `p-url`: Get page url
 
-- `p-pam`: Create asynchronous method
-
-- `p-etbv`: Expect to be visible
-
-- `p-etbh`: Expect to be hidden
-
-- `p-etb`: Expect to be
-
-- `p-etbc`: Expect to be checked
-
-- `p-etbe`: Expect to be enabled
-
-- `p-etbd`: Expect to be disabled
-
-- `p-wf`: page waitFor
-
-- `p-wfs`: waitForSelector
-
-- `p-wfls`:   waitForLoadState
-
-- `p-wft`:    waitForTimeout
-
-- `p-fill`:   fill input
-
-- `p-type`:   type input
-
-- `p-isv`:    Selector isVisible()
-
-- `p-ish`:    Selector isHidden()
-
-- `p-isen`:   Selector isEnabled()
-
-- `p-isd`:    Selector isDisabled()
-
-- `p-isc`:    Selector isChecked()
-
-- `p-ised`:   Selector isEditable()
+##Happy Coding

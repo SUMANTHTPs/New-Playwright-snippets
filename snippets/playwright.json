@@ -1,6 +1,6 @@
 {
     "Playwright import": {
-        "prefix": "p-imp",
+        "prefix": "m-imp",
         "description": "Imports Playwright's test libraries",
         "body": [
             "",
@@ -27,7 +27,7 @@
             ""
         ]
     },
-    "Playwright test block": {
+    "test()": {
         "prefix": "p-t",
         "description": "Playwright test block",
         "body": [
@@ -55,7 +55,7 @@
             "    });"
         ]
     },
-    "Playwright test.step block": {
+    "test.step()": {
         "prefix": "p-ts",
         "description": "Playwright test.step block",
         "body": [
@@ -65,7 +65,7 @@
             ""
         ]
     },
-    "Playwright beforeEach block": {
+    "test.beforeEach()": {
         "prefix": "p-tbe",
         "description": "Playwright beforeEach block",
         "body": [
@@ -75,7 +75,7 @@
             ""
         ]
     },
-    "Playwright afterEach block": {
+    "test.afterEach()": {
         "prefix": "p-tae",
         "description": "Playwright afterEach block",
         "body": [
@@ -85,7 +85,7 @@
             ""
         ]
     },
-    "Playwright beforeAll block": {
+    "test.beforeAll()": {
         "prefix": "p-tba",
         "description": "Playwright beforeAll block",
         "body": [
@@ -95,7 +95,7 @@
             ""
         ]
     },
-    "Playwright afterAll block": {
+    "test.afterAll()": {
         "prefix": "p-taa",
         "description": "Playwright afterAll block",
         "body": [
@@ -105,7 +105,7 @@
             ""
         ]
     },
-    "page.click": {
+    "page.click()": {
         "prefix": "p-clk",
         "body": "await this.page.locator('${0:selector}').click();",
         "description": "Clicks in the center of an element within the page"
@@ -117,7 +117,12 @@
             "await clickSelector(this.page, ${1:selector});"
         ]
     },
-    "Click with index": {
+    "page.dblclick()": {
+        "prefix": "p-dbclk",
+        "body": "await page.dblclick('$0');",
+        "description": "Clicks twice in the center of an element within the page"
+    },
+    "page.nth().click()": {
         "prefix": "p-clki",
         "description": "clicks selector",
         "body": [
@@ -138,7 +143,7 @@
             "await navigateToUrl(this.page, ${1:url});"
         ]
     },
-    "page.title": {
+    "page.title()": {
         "prefix": "p-title",
         "description": "Returns the page's title",
         "body": [
@@ -152,82 +157,82 @@
             "await verifyPageURL(this.page, ${1:url});"
         ]
     },
-    "Get page url": {
+    "page.url()": {
         "prefix": "p-url",
         "body": "await this.page.url();",
         "description": "Returns the page's URL"
     },
-    "Async class method": {
+    "publicAsyncMethod()": {
         "prefix": "p-pam",
         "description": "Playwright asynchronous method for class",
         "body": [
             "public async ${1:name}($2) {$3}"
         ]
     },
-    "Expect to be visible": {
+    "page.toBeVisible()": {
         "prefix": "p-etbv",
         "description": "Playwright expect to be visible",
         "body": [
             "await expect(this.page.locator(${1:selector})).toBeVisible();"
         ]
     },
-    "Expect to be hidden": {
+    "page.toBeHidden()": {
         "prefix": "p-etbh",
         "description": "Playwright expect to be visible",
         "body": [
             "await expect(this.page.locator(${1:selector})).toBeHidden();"
         ]
     },
-    "Expect to be Enabled": {
+    "page.toBeEnabled()": {
         "prefix": "p-etbe",
         "description": "Playwright expect to be visible",
         "body": [
             "await expect(this.page.locator(${1:selector})).toBeEnabled();"
         ]
     },
-    "Expect to be disabled": {
+    "page.toBeDisabled()": {
         "prefix": "p-etbd",
         "description": "Playwright expect to be visible",
         "body": [
             "await expect(this.page.locator(${1:selector})).toBeDisabled();"
         ]
     },
-    "Expect to be checked": {
+    "page.toBeChecked()": {
         "prefix": "p-etbc",
         "description": "Playwright expect to be checked",
         "body": [
             "await expect(this.page.locator(${1:selector})).toBeChecked();"
         ]
     },
-    "Expect to be": {
+    "expect.toBe()": {
         "prefix": "p-etb",
         "description": "Playwright expect something to be something",
         "body": [
             "expect($1).toBe($2);"
         ]
     },
-    "Playwright waitFor": {
+    "page.waitFor()": {
         "prefix": "p-wf",
         "description": "Playwright wait for",
         "body": [
             "await this.page.locator(${1:selector}).waitFor($2);"
         ]
     },
-    "Playwright wait selector": {
+    "page.waitForSelector()": {
         "prefix": "p-wfs",
         "description": "Playwright waitForSelector",
         "body": [
             "await this.page.waitForSelector(${0:selector});"
         ]
     },
-    "Playwright wait load state": {
+    "page.waitForLoadState()": {
         "prefix": "p-wfls",
         "description": "Playwright waitForLoad",
         "body": [
             "await this.page.waitForLoadState();"
         ]
     },
-    "Playwright wait load timeout": {
+    "page.waitForTimeout()": {
         "prefix": "p-wft",
         "description": "Playwright waitForTimeout",
         "body": [
@@ -243,14 +248,14 @@
             "}"
         ]
     },
-    "Playwright fill input": {
+    "page.fill()": {
         "prefix": "p-fill",
         "description": "Playwright fill input",
         "body": [
             "await this.page.locator(${1:selector}).fill($2);"
         ]
     },
-    "Playwright type input": {
+    "page.type()": {
         "prefix": "p-type",
         "description": "Playwright type input",
         "body": [
@@ -264,54 +269,159 @@
             "await fillValueInControl(this.page, ${1:inputSelector}, ${2:value});"
         ]
     },
-    "Selector isVisible": {
+    "page.isVisible()": {
         "prefix": "p-isv",
         "description": "Selector is visble?",
         "body": [
             "await this.page.locator(${1:selector}).isVisible();"
         ]
     },
-    "Selector isHidden": {
+    "page.isHidden()": {
         "prefix": "p-ish",
         "description": "Selector is hidden?",
         "body": [
             "await this.page.locator(${1:selector}).isHidden();"
         ]
     },
-    "Selector is checked": {
+    "page.isChecked()": {
         "prefix": "p-isc",
         "description": "Selector is checked?",
         "body": [
             "await this.page.locator(${1:selector}).isChecked();"
         ]
     },
-    "Selector is enabled": {
+    "page.isEnabled()": {
         "prefix": "p-isen",
         "description": "Selector is enabled?",
         "body": [
             "await this.page.locator(${1:selector}).isEnabled();"
         ]
     },
-    "Selector is disabled": {
+    "page.isDisabled()": {
         "prefix": "p-isd",
         "description": "Selector is diabled?",
         "body": [
             "await this.page.locator(${1:selector}).isDisabled();"
         ]
     },
-    "Selector is editable": {
+    "page.isEditable()": {
         "prefix": "p-ised",
         "description": "Selector is editable?",
         "body": [
             "await this.page.locator(${1:selector}).isEditable();"
         ]
     },
+    "page.check()": {
+        "prefix": "p-chk",
+        "description": "Check the selector",
+        "body": [
+            "await this.page.locator(${1:selector}).check();"
+        ]
+    },
+    "page.uncheck()": {
+        "prefix": "p-uchk",
+        "description": "Check the selector",
+        "body": [
+            "await this.page.locator(${1:selector}).uncheck();"
+        ]
+    },
+    "Navigate to new page/tab": {
+        "prefix": "p-newPage",
+        "description": "Navigate to new tab",
+        "body": [
+            "const [${2:newPage}] = await Promise.all([",
+            "\tcontext.waitForEvent('page'),",
+            "\tpage.click(${1:selector})",
+            "])",
+            "await newPage.waitForLoadState();"
+        ]
+    },
+    "Navigate to new popup": {
+        "prefix": "p-newPopup",
+        "description": "Navigate to new tab",
+        "body": [
+            "const [${2:newPopup}] = await Promise.all([",
+            "\tthis.page.waitForEvent('popup'),",
+            "\tthis.page.click(${1:selector})",
+            "])",
+            "await newPage.waitForLoadState();"
+        ]
+    },
+    "page.getAttribute()": {
+        "prefix": "p-getattr",
+        "description": "Get values of element attribute",
+        "body": [
+            "await this.page.locator(${1:selector}).getAttribute('$2');"
+        ]
+    },
+    "page.innerText()": {
+        "prefix": "p-itxt",
+        "description": "Get values of element inner text",
+        "body": [
+            "await this.page.locator(${1:selector}).innerText();"
+        ]
+    },
+    "page.count()": {
+        "prefix": "p-count",
+        "description": "Get elements count",
+        "body": [
+            "await this.page.locator(${1:selector}).count();"
+        ]
+    },
+    "test.use()": {
+        "prefix": "p-tuse",
+        "description": "test.use()",
+        "body": [
+            "test.use({ $0 });"
+        ]
+    },
+    "browser.newContext()": {
+        "prefix": "p-browser-newContext",
+        "body": "const ${1:context} = await browser.newContext();",
+        "description": "Creates a new browser context"
+    },
+    "browser.newPage()": {
+        "prefix": "p-browser-newPage",
+        "body": "const ${1:page} = await browser.newPage();",
+        "description": "Creates a new page in a new browser context"
+    },
+    "context.newPage()": {
+        "prefix": "p-context-newPage",
+        "body": "const ${1:page} = await context.newPage();",
+        "description": "Creates a new page in the browser context"
+    },
+    "context.pages()": {
+        "prefix": "p-context-pages",
+        "body": "await context.pages();",
+        "description": "Returns all pages of the browser context"
+    },
+    "page.focus()": {
+        "prefix": "p-focus",
+        "body": "await page.focus('$0');",
+        "description": "Focuses an element within the page"
+    },
+    "page.goBack()": {
+        "prefix": "p-goBack",
+        "body": "await page.goBack();",
+        "description": "Navigates to the previous page in the history"
+    },
+    "page.goForward()": {
+        "prefix": "p-goFwd",
+        "body": "await page.goForward();",
+        "description": "Navigates to the next page in the history"
+    },
+    "page.goto()": {
+        "prefix": "p-goto",
+        "body": "await page.goto('$0');",
+        "description": "Navigates the page to a URL"
+    },
     "POM Class": {
         "prefix": "m-pom",
         "description": "Playwright Page Object Model (POM) class structure",
         "body": [
-            "import { navigateToUrl } from '@paeng/playwright-solution';",
             "import { Page } from '@playwright/test';",
+            "",
+            "import { navigateToUrl } from '@paeng/playwright-solution';",
             "",
             "export class ${1:ClassName} {",
             "  readonly page: Page;",
@@ -329,8 +439,9 @@
         "prefix": "m-pome",
         "description": "Playwright Page Object Model (POM) class structure with extended class",
         "body": [
-            "import { navigateToUrl } from '@paeng/playwright-solution';",
             "import { Page } from '@playwright/test';",
+            "",
+            "import { navigateToUrl } from '@paeng/playwright-solution';",
             "",
             "export class ${1:ClassName} extends ${2:extendClassName} {",
             "  constructor(page: Page) {",
