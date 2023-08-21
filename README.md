@@ -113,6 +113,8 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 | `p-ethss`                  | expect.toHaveScreenshot()      |
 
 #### New Advanced Locators
+| Snippet                    | Content                        |
+| -------------------------- | ------------------------------ |
 | `p-get-txt`                | page.getByText                 |
 | `p-get-r`                  | page.getByRole                 |
 | `p-get-l`                  | page.getByLabel                |
