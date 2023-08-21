@@ -38,7 +38,7 @@
         ]
     },
     "Playwright integrationTest block": {
-        "prefix": "p-int",
+        "prefix": "m-int",
         "description": "Playwright integrationTest wrapper function block",
         "body": [
             "integrationTest(",
@@ -451,6 +451,188 @@
             "  public async ${3:methodName}() {}",
             "",
             "}"
+        ]
+    },
+    "page.hover": {
+        "prefix": "p-hover",
+        "description": "Playwright page.hover()",
+        "body": [
+            "await this.page.locator(${1:selector}).hover();"
+        ]
+    },
+    "page.press": {
+        "prefix": "p-press",
+        "description": "Playwright page.press()",
+        "body": [
+            "await this.page.locator(${1:selector}).press();"
+        ]
+    },
+    "page.setInputFiles": {
+        "prefix": "p-sif",
+        "description": "Playwright page.setInputFiles",
+        "body": [
+            "await this.page.locator(${1:selector}).setInputFiles(${1:inputFilePath});"
+        ]
+    },
+    "page.selectOption": {
+        "prefix": "p-so",
+        "description": "Playwright page.selectOption",
+        "body": [
+            "await this.page.locator(${1:selector}).selectOption(${1:option});"
+        ]
+    },
+    "expect.toHaveTitle": {
+        "prefix": "p-etht",
+        "description": "Playwright expect to have given title string",
+        "body": [
+            "await expect(${1:this.page}).toHaveTitle(${2:title});"
+        ]
+    },
+    "expect.toContainText": {
+        "prefix": "p-etctxt",
+        "description": "Playwright expect to contain text",
+        "body": [
+            "await expect(${1:this.page}).toContainText(${2:text});"
+        ]
+    },
+    "expect.toHaveAttribute": {
+        "prefix": "p-ethattr",
+        "description": "Playwright expect to have attribute",
+        "body": [
+            "await expect(${1:this.page}).toHaveAttribute(${2:attribute});"
+        ]
+    },
+    "expect.toHaveCount": {
+        "prefix": "p-ethc",
+        "description": "Playwright expect given selector resolves to given count",
+        "body": [
+            "await expect(${1:this.page}).toHaveCount(${2:count});"
+        ]
+    },
+    "expect.toHaveText": {
+        "prefix": "p-ethtxt",
+        "description": "Playwright expect to have text",
+        "body": [
+            "await expect(${1:this.page}).toHaveText(${2:text});"
+        ]
+    },
+    "expect.toHaveURL": {
+        "prefix": "p-ethURL",
+        "description": "Playwright expect page to have URL",
+        "body": [
+            "await expect(${1:this.page}).toHaveURL(${2:text});"
+        ]
+    },
+    "expect.toHaveScreenshot": {
+        "prefix": "p-ethss",
+        "description": "Playwright expect page to have screenshot",
+        "body": [
+            "await expect(${1:this.page}).toHaveScreenshot();"
+        ]
+    },
+    "page.getByText": {
+        "prefix": "p-get-txt",
+        "description": "Playwright locate by text content",
+        "body": [
+            "await this.page.getByText(${1:text});"
+        ]
+    },
+    "page.getByRole": {
+        "prefix": "p-get-r",
+        "description": "Playwright locate by ARIA role, ARIA attributes and accessible name.",
+        "body": [
+            "await this.page.getByRole($1);"
+        ]
+    },
+    "page.getByLabel": {
+        "prefix": "p-get-l",
+        "description": "Playwright locate a form control by associated label's text",
+        "body": [
+            "await this.page.getByLabel($1);"
+        ]
+    },
+    "page.getByTestId": {
+        "prefix": "p-get-ti",
+        "description": "Playwright locate an element based on its data-testid attribute",
+        "body": [
+            "await this.page.getByTestId($1);"
+        ]
+    },
+
+    "page.getByPlaceholder": {
+        "prefix": "p-get-p",
+        "description": "Playwright locate an input by placeholder",
+        "body": [
+            "await this.page.getByPlaceholder($1);"
+        ]
+    },
+    "page.getByAltText": {
+        "prefix": "p-get-atxt",
+        "description": "Playwright locate an element, usually image, by its text alternative.",
+        "body": [
+            "await this.page.getByAltText($1);"
+        ]
+    },
+    "page.getByTitle": {
+        "prefix": "p-get-title",
+        "description": "Playwright ",
+        "body": [
+            "await this.page.getByTitle($1);"
+        ]
+    },
+    "page.locate": {
+        "prefix": "p-locator",
+        "description": "Playwright page locator",
+        "body": [
+            "const ${1:locator} = await this.page.locator('${2:selector}');"
+        ]
+    },
+    "Complete test block": {
+        "prefix": "p-testBlock",
+        "description": "Playwright full test block",
+        "body": [
+            "test.describe(() => {",
+                "test.use({ colorScheme: 'dark'});",
+
+                "test('one', async ({ page}) => {",
+                  "${1:codeBlock}",
+                "});",
+            "});"
+        ]
+    },
+    "Playwright save HAR file": {
+        "prefix": "p-saveHAR",
+        "description": "Playwright save HAR file",
+        "body": [
+            "const context = await browser.newContext({",
+                "recordHar: { path: '${1:harFile.har.zip}'",
+                "}",
+            "});"
+        ]
+    },
+    "page.route": {
+        "prefix": "p-route",
+        "description": "Playwright sample route snippet",
+        "body": [
+            "await page.route('${1:**/*}', async route => {",
+                "const headers = await route.request().allHeaders();",
+                "delete headers['if-none-match'];",
+                "route.fallback({ headers });",
+            "});"
+        ]
+    },
+    "Full page screenshot": {
+        "prefix": "p-screenshot-full",
+        "description": "Playwright Full page screenshots",
+        "body": [
+            "await this.page.screenshot({ path: '${1:screenshot.png}', fullPage: ${2:true} });"
+        ]
+    },
+    "Element screenshot": {
+        "prefix": "p-screenshot-element",
+        "description": "Playwright Full page screenshots",
+        "body": [
+            "await this.page.locator(${1:selector}).screenshot({ path: '${2:screenshot.png}' });"
         ]
     }
 }

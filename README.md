@@ -67,20 +67,26 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 | `p-clki`                   | page.nth().click()             |
 | `p-chk`                    | page.check()                   |
 | `p-uchk`                   | page.uncheck()                 |
-| -------------------------- | ------------------------------ |
+| `p-hover`                  | page.hover()                   |
+| `p-press`                  | page.press()                   |
+| `p-sif`                    | page.setInputFiles()           |
+| `p-screenshot-full`        | Full page screenshot           |
+| `p-screenshot-element`     | Element screenshot             |
+|                            |                                |
 | `p-title`                  | page.title()                   |
 | `p-url`                    | page.url()                     |
-| -------------------------- | ------------------------------ |
+|                            |                                |
 | `p-fill`                   | page.fill()                    |
 | `p-type`                   | page.type()                    |
-| -------------------------- | ------------------------------ |
+| `p-so`                     | page.selectOption()            |
+|                            |                                |
 | `p-isv`                    | page.isVisible()               |
 | `p-ish`                    | page.isHidden()                |
 | `p-isc`                    | page.isChecked()               |
 | `p-isen`                   | page.isEnabled()               |
 | `p-isd`                    | page.isDisabled()              |
 | `p-ised`                   | page.isEditable()              |
-| -------------------------- | ------------------------------ |
+|                            |                                |
 | `p-getattr`                | page.getAttribute()            |
 | `p-itxt`                   | page.innerText()               |
 | `p-count`                  | page.count()                   |
@@ -97,7 +103,24 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 | `p-etbe`                   | page.toBeEnabled()             |
 | `p-etbd`                   | page.toBeDisabled()            |
 | `p-etbc`                   | page.toBeChecked()             |
-| `p-etb`                    | expect.toBe()             |
+| `p-etb`                    | expect.toBe()                  |
+| `p-etht`                   | expect.toHaveTitle()           |
+| `p-etctxt`                 | expect.toContainText()         |
+| `p-ethattr`                | expect.toHaveAttribute()       |
+| `p-ethc`                   | expect.toHaveCount()           |
+| `p-ethtxt`                 | expect.toHaveText()            |
+| `p-ethURL`                 | expect.toHaveURL()             |
+| `p-ethss`                  | expect.toHaveScreenshot()      |
+
+#### New Advanced Locators
+| `p-get-txt`                | page.getByText                 |
+| `p-get-r`                  | page.getByRole                 |
+| `p-get-l`                  | page.getByLabel                |
+| `p-get-ti`                 | page.getByTestId               |
+| `p-get-p`                  | page.getByPlaceholder          |
+| `p-get-atxt`               | page.getByAltText              |
+| `p-get-title`              | page.getByTitle                |
+| `p-locator`                | page.locate                    |
 
 #### Page wait actions
 | Snippet                    | Content                        |
@@ -115,6 +138,9 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 | `p-pam`                    | public async method() {...}    |
 | `p-newPage`                | Handle new tab/ page           |
 | `p-newPopup`               | Handle popups                  |
+| `p-testBlock`              | Complete test block            |
+| `p-saveHAR`                | Save HAR file                  |
+| `p-route`                  | page.route                     |
 
 
-##Happy Coding
+## Happy Coding
