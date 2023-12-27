@@ -1,10 +1,10 @@
 {
   "name": "playwright-test-code-snippets",
-  "displayName": "Playwright Snippets 2023",
+  "displayName": "Playwright Snippets 2024",
   "license": "MIT",
   "author": "Sumanth TP",
   "publisher": "sumanthtps",
-  "description": "The Playwright Snippets 2023 Extension is a powerful tool that enhances the automation capabilities of Playwright, enabling developers and QA professionals to build robust, maintainable, and efficient end-to-end tests for web applications. The extension leverages the concept of the Page Object Model, a widely adopted design pattern in test automation, to encapsulate web page elements and interactions in a structured and reusable manner.",
+  "description": "A plethora of new advanced playwright snippets in the vs market place",
   "homepage": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "color": "#2b3137",
     "theme": "dark"
   },
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.80.0"
   },

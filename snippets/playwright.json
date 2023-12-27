@@ -239,6 +239,31 @@
             "await this.page.waitForTimeout(Timeout.$1);"
         ]
     },
+    "page.waitForEvent()": {
+        "prefix": "p-wfe",
+        "body": "await this.page.waitForEvent($0);",
+        "description": "Waits until an event within the page is fired"
+    },
+    "page.waitForFunction()": {
+        "prefix": "p-wff",
+        "body": "await this.page.waitForFunction($0);",
+        "description": "Waits until a predicate within the page returns a truthy value"
+    },
+    "page.waitForNavigation()": {
+        "prefix": "p-wfn",
+        "body": "await this.page.waitForNavigation();",
+        "description": "Waits until the page navigates to a new URL or reloads"
+    },
+    "page.waitForRequest()": {
+        "prefix": "p-wfreq",
+        "body": "await this.page.waitForRequest($0);",
+        "description": "Waits until a request by URL/predicate is resolved"
+    },
+    "page.waitForResponse()": {
+        "prefix": "p-wfres",
+        "body": "await this.page.waitForResponse($0);",
+        "description": "Waits until a response by URL/predicate is resolved"
+    },
     "A11y check": {
         "prefix": "m-a11y",
         "description": "Playwright a11y check util",
@@ -252,14 +277,14 @@
         "prefix": "p-fill",
         "description": "Playwright fill input",
         "body": [
-            "await this.page.locator(${1:selector}).fill($2);"
+            "await this.page.fill(${1:selector}, ${2:value});"
         ]
     },
     "page.type()": {
         "prefix": "p-type",
         "description": "Playwright type input",
         "body": [
-            "await this.page.locator(${1:selector}).type($2);"
+            "await this.page.type(${1:selector}, ${2:value});"
         ]
     },
     "fill value in controls": {
@@ -376,12 +401,12 @@
         ]
     },
     "browser.newContext()": {
-        "prefix": "p-browser-newContext",
+        "prefix": "p-b-newContext",
         "body": "const ${1:context} = await browser.newContext();",
         "description": "Creates a new browser context"
     },
     "browser.newPage()": {
-        "prefix": "p-browser-newPage",
+        "prefix": "p-b-newPage",
         "body": "const ${1:page} = await browser.newPage();",
         "description": "Creates a new page in a new browser context"
     },
@@ -397,22 +422,22 @@
     },
     "page.focus()": {
         "prefix": "p-focus",
-        "body": "await page.focus('$0');",
+        "body": "await this.page.focus('$0');",
         "description": "Focuses an element within the page"
     },
     "page.goBack()": {
         "prefix": "p-goBack",
-        "body": "await page.goBack();",
+        "body": "await this.page.goBack();",
         "description": "Navigates to the previous page in the history"
     },
     "page.goForward()": {
         "prefix": "p-goFwd",
-        "body": "await page.goForward();",
+        "body": "await this.page.goForward();",
         "description": "Navigates to the next page in the history"
     },
     "page.goto()": {
         "prefix": "p-goto",
-        "body": "await page.goto('$0');",
+        "body": "await this.page.goto('$0');",
         "description": "Navigates the page to a URL"
     },
     "POM Class": {
@@ -458,13 +483,6 @@
         "description": "Playwright page.hover()",
         "body": [
             "await this.page.locator(${1:selector}).hover();"
-        ]
-    },
-    "page.press": {
-        "prefix": "p-press",
-        "description": "Playwright page.press()",
-        "body": [
-            "await this.page.locator(${1:selector}).press();"
         ]
     },
     "page.setInputFiles": {
@@ -614,7 +632,7 @@
         "prefix": "p-route",
         "description": "Playwright sample route snippet",
         "body": [
-            "await page.route('${1:**/*}', async route => {",
+            "await this.page.route('${1:**/*}', async route => {",
                 "const headers = await route.request().allHeaders();",
                 "delete headers['if-none-match'];",
                 "route.fallback({ headers });",
@@ -625,7 +643,7 @@
         "prefix": "p-screenshot-full",
         "description": "Playwright Full page screenshots",
         "body": [
-            "await this.page.screenshot({ path: '${1:screenshot.png}', fullPage: ${2:true} });"
+            "await this.page.screenshot({ path: '${2:page.png}', fullPage: '${3|true,false|}' });"
         ]
     },
     "Element screenshot": {
@@ -633,6 +651,457 @@
         "description": "Playwright Full page screenshots",
         "body": [
             "await this.page.locator(${1:selector}).screenshot({ path: '${2:screenshot.png}' });"
+        ]
+    },
+    "Playwright module": {
+        "prefix": "p-i-pw",
+        "body": "const playwright = require('playwright');",
+        "description": "Imports Playwright's full module"
+    },
+    "Import Chromium": {
+        "prefix": "p-i-chromium",
+        "body": "const { chromium } = require('playwright');",
+        "description": "Imports Playwright's Chromium module"
+    },
+    "Import Firefox": {
+        "prefix": "p-i-firefox",
+        "body": "const { firefox } = require('playwright');",
+        "description": "Imports Playwright's Firefox module"
+    },
+    "Import Webkit": {
+        "prefix": "p-i-webkit",
+        "body": "const { webkit } = require('playwright');",
+        "description": "Imports Playwright's Webkit module"
+    },
+    "Import devices": {
+        "prefix": "p-i-devices",
+        "body": "const { devices } = require('playwright');",
+        "description": "Imports the device descriptors module"
+    },
+    "Connect Chromium": {
+        "prefix": "p-connect-chromium",
+        "body": [
+            "const ${1:browser} = await chromium.connect({",
+            "\twsEndpoint: '$0'",
+            "});"
+        ],
+        "description": "Attaches Playwright to an existing Chromium instance"
+    },
+    "Launch Chromium": {
+        "prefix": "p-l-chromium",
+        "body": "const ${1:browser} = await chromium.launch($0);",
+        "description": "Creates a Chromium instance and attaches Playwright to it"
+    },
+    "Launch Chromium Server": {
+        "prefix": "p-ls-chromium",
+        "body": "const ${1:browserServer} = await chromium.launchServer();",
+        "description": "Creates a Chromium server instance the client can connect to"
+    },
+    "Connect Firefox": {
+        "prefix": "p-connect-firefox",
+        "body": [
+            "const ${1:browser} = await firefox.connect({",
+            "\twsEndpoint: '$0'",
+            "});"
+        ],
+        "description": "Attaches Playwright to an existing Firefox instance"
+    },
+    "Launch Firefox": {
+        "prefix": "p-l-firefox",
+        "body": "const ${1:browser} = await firefox.launch($0);",
+        "description": "Creates a Firefox instance and attaches Playwright to it"
+    },
+    "Launch Firefox Server": {
+        "prefix": "p-ls-firefox",
+        "body": "const ${1:browserServer} = await firefox.launchServer();",
+        "description": "Creates a Firefox server instance the client can connect to"
+    },
+    "Connect Webkit": {
+        "prefix": "p-connect-webkit",
+        "body": [
+            "const ${1:browser} = await webkit.connect({",
+            "\twsEndpoint: '$0'",
+            "});"
+        ],
+        "description": "Attaches Playwright to an existing Webkit instance"
+    },
+    "Launch Webkit": {
+        "prefix": "p-l-webkit",
+        "body": "const ${1:browser} = await webkit.launch($0);",
+        "description": "Creates a Webkit instance and attaches Playwright to it"
+    },
+    "Launch Webkit Server": {
+        "prefix": "p-ls-webkit",
+        "body": "const ${1:browserServer} = await webkit.launchServer();",
+        "description": "Creates a Webkit server instance the client can connect to"
+    },
+    "browser.contexts": {
+        "prefix": "p-b-contexts",
+        "body": "browser.contexts();",
+        "description": "Returns an array of all open browser contexts"
+    },
+    "browser.close": {
+        "prefix": "p-b-close",
+        "body": "await browser.close();",
+        "description": "Closes the browser and all of its pages when it's launched, or clears all created contexts belonging to this browser and disconnects from the browser server when it's connected to"
+    },
+    "browser.isConnected": {
+        "prefix": "p-b-isConnected",
+        "body": "browser.isConnected();",
+        "description": "Indicates that the browser is connected"
+    },
+    "browser.version": {
+        "prefix": "p-b-version",
+        "body": "browser.version();",
+        "description": "Returns the browser version"
+    },
+    "browser.on('disconnected')": {
+        "prefix": "p-b-on-disconnected",
+        "body": [
+            "browser.on('disconnected', () => {",
+            "\t$0",
+            "});"
+        ],
+        "description": "Emitted when the browser gets disconnected from the browser application"
+    },
+    "browserContext.close": {
+        "prefix": "p-bc-close",
+        "body": "await context.close();",
+        "description": "Closes the browser context including all of its pages"
+    },
+    "browserContext.cookies": {
+        "prefix": "p-bc-cookies",
+        "body": "await context.cookies();",
+        "description": "Returns all cookies of the browser context"
+    },
+    "browserContext.route": {
+        "prefix": "p-bc-route",
+        "body": "await context.route('$1', ${2:route} => {$0});",
+        "description": "Modifies the network request that made by any page within the browser context"
+    },
+    "browserContext.unroute": {
+        "prefix": "p-bc-unroute",
+        "body": "await context.unroute('$0');",
+        "description": "Removes registered route of a page withing the browser context"
+    },
+    "browserContext.on('close')": {
+        "prefix": "p-bc-on-close",
+        "body": [
+            "context.on('close', () => {",
+            "\t$0",
+            "});"
+        ],
+        "description": "Emitted when the browser context is closed (manually or when the browser application is crashed)"
+    },
+    "browserContext.on('page')": {
+        "prefix": "p-bc-on-page",
+        "body": [
+            "context.on('page', () => {",
+            "\t$0",
+            "});"
+        ],
+        "description": "Emitted when a page is created within the browser context"
+    },
+    "browserServer.close": {
+        "prefix": "p-bs-close",
+        "body": "await browserServer.close();",
+        "description": "Closes the browser and makes sure the process is terminated"
+    },
+    "browserServer.kill": {
+        "prefix": "p-bs-kill",
+        "body": "await browserServer.kill();",
+        "description": "Kills the browser process and waits until the process exits"
+    },
+    "browserServer.on('close')": {
+        "prefix": "p-bs-on-close",
+        "body": [
+            "browserServer.on('close', () => {",
+            "\t$0",
+            "});"
+        ],
+        "description": "Emitted when the browser server is closed"
+    },
+    "page.$": {
+        "prefix": "p-$",
+        "body": "await this.page.$('$0');",
+        "description": "Finds a matching element by a query selector within the page"
+    },
+    "page.$$": {
+        "prefix": "p-$$",
+        "body": "await this.page.$$('$0');",
+        "description": "Finds all matching elements by a query selector within the page"
+    },
+    "page.$eval": {
+        "prefix": "p-$eval",
+        "body": [
+            "await this.page.$eval('$2', element => {",
+            "\t${3:console.log(element);}",
+            "});"
+        ],
+        "description": "Finds a matching element by a query selector within the page and passes the result as the first argument to a function"
+    },
+    "page.$$eval": {
+        "prefix": "p-$$eval",
+        "body": [
+            "await this.page.$$eval('$2', elements => {",
+            "\t${3:console.log(elements);}",
+            "});"
+        ],
+        "description": "Finds all matching elements by a query selector within the page and passes the results as the first argument to a function"
+    },
+    "page.bringToFront": {
+        "prefix": "p-bringToFront",
+        "body": "await this.page.bringToFront();",
+        "description": "Actives the corresponding tab of the page"
+    },
+    "page.close": {
+        "prefix": "p-close",
+        "body": "await this.page.close();",
+        "description": "Closes the page"
+    },
+    "page.content": {
+        "prefix": "p-content",
+        "body": "await this.page.content();",
+        "description": "Returns the full HTML contents of the page"
+    },
+    "page.pdf": {
+        "prefix": "p-pdf",
+        "body": "await this.page.pdf({ path: '${2:page.pdf}', format: '${3|A4,Letter,Legal,Tabloid,Ledger,A0,A1,A2,A3,A5,A6|}' });",
+        "description": "Generates a PDF from the page"
+    },
+    "page.press with options": {
+        "prefix": "p-press",
+        "body": "await this.page.press('$1', '${2:F1|F2|F3|F4|F5|F6|F7|F8|F9|F10|F11|F12|Backspace|Tab|Delete|Escape|Enter|PageUP|PageDown|ArrowUp|ArrowDown|ArrowLeft|ArrowRight}', fullPage: '${3|true,false|}' });",
+        "description": "Focuses an element within the page and presses on a specific key"
+    },
+    "page.on('close')": {
+        "prefix": "p-on-close",
+        "body": [
+            "page.on('close', () => {",
+            "\t${0:console.log('Closed');}",
+            "});"
+        ],
+        "description": "Emitted when the page is closed"
+    },
+    "page.on('console')": {
+        "prefix": "p-on-console",
+        "body": [
+            "page.on('console', msg => {",
+            "\t${0:console.log(msg.args());}",
+            "});"
+        ],
+        "description": "Emitted when a script within the page calls one of console API methods"
+    },
+    "page.on('crash')": {
+        "prefix": "p-on-crash",
+        "body": [
+            "page.on('crash', () => {",
+            "\t${0:console.log('Crashed');}",
+            "});"
+        ],
+        "description": "Emitted when the page crashes"
+    },
+    "page.on('dialog')": {
+        "prefix": "p-on-dialog",
+        "body": [
+            "page.on('dialog', dialog => {",
+            "\t${0:console.log(dialog.message());}",
+            "});"
+        ],
+        "description": "Emitted when a dialog appears in the page"
+    },
+    "page.on('domcontentloaded')": {
+        "prefix": "p-on-domcontentloaded",
+        "body": [
+            "page.on('domcontentloaded', () => {",
+            "\t${0:console.log('DOMContentLoaded is dispatched');}",
+            "});"
+        ],
+        "description": "Emitted when the `DOMContentLoaded` event of the page is dispatched"
+    },
+    "page.on('frameattached')": {
+        "prefix": "p-on-frameattached",
+        "body": [
+            "page.on('frameattached', frame => {",
+            "\t${0:console.log(frame.content());}",
+            "});"
+        ],
+        "description": "Emitted when a frame within the page is attached"
+    },
+    "page.on('framedetached')": {
+        "prefix": "p-on-framedetached",
+        "body": [
+            "page.on('framedetached', frame => {",
+            "\t${0:console.log(frame.content());}",
+            "});"
+        ],
+        "description": "Emitted when a frame within the page is detached"
+    },
+    "page.on('framenavigated')": {
+        "prefix": "p-on-framenavigated",
+        "body": [
+            "page.on('framenavigated', frame => {",
+            "\t${0:console.log(frame.content());}",
+            "});"
+        ],
+        "description": "Emitted when a frame within the page is navigated to a new url"
+    },
+    "page.on('load')": {
+        "prefix": "p-on-load",
+        "body": [
+            "page.on('load', () => {",
+            "\t${0:console.log('Loaded');}",
+            "});"
+        ],
+        "description": "Emitted when the `load` event of the page is dispatched"
+    },
+    "page.keyboard.press": {
+        "prefix": "p-keyboard-press",
+        "body": "await this.page.keyboard.press('$0');",
+        "description": "Presses on a specific key within the page"
+    },
+    "page.keyboard.insertText": {
+        "prefix": "p-keyboard-insertText",
+        "body": "await this.page.keyboard.insertText('$0');",
+        "description": "Dispatches an `input` event within the page"
+    },
+    "page.keyboard.up": {
+        "prefix": "p-keyboard-up",
+        "body": "await this.page.keyboard.up('$0');",
+        "description": "Dispatches a `keyup` event within the page"
+    },
+    "page.mouse.click": {
+        "prefix": "p-mouse-clk",
+        "body": "await this.page.mouse.click(${2:0}, ${3:100});",
+        "description": "Clicks on area within the page by coordinates"
+    },
+    "page.mouse.dblclick": {
+        "prefix": "p-mouse-dbclk",
+        "body": "await this.page.mouse.dblclick(${2:0}, ${3:100});",
+        "description": "Clicks twice on area within the page by coordinates"
+    },
+    "page.mouse.down": {
+        "prefix": "p-mouse-down",
+        "body": "await this.page.mouse.down();",
+        "description": "Dispatches a `mousedown` event within the page"
+    },
+    "page.mouse.move": {
+        "prefix": "p-mouse-move",
+        "body": "await this.page.mouse.move();",
+        "description": "Dispatches a `mousemove` event within the page"
+    },
+    "page.mouse.up": {
+        "prefix": "p-mouse-up",
+        "body": "await this.page.mouse.up();",
+        "description": "Dispatches a `mouseup` event within the page"
+    },
+    "page.on('pageerror')": {
+        "prefix": "p-on-pageerror",
+        "body": [
+            "page.on('pageerror', error => {",
+            "\t${0:console.log(error);}",
+            "});"
+        ],
+        "description": "Emitted when an uncaught exception happens within the page"
+    },
+    "page.on('popup')": {
+        "prefix": "p-on-popup",
+        "body": [
+            "page.on('popup', page => {",
+            "\t${0:console.log(page.content());}",
+            "});"
+        ],
+        "description": "Emitted when the page opens a new tab or window"
+    },
+    "page.on('request')": {
+        "prefix": "p-on-request",
+        "body": [
+            "page.on('request', request => {",
+            "\t${0:console.log(request.url());}",
+            "});"
+        ],
+        "description": "Emitted when the request is issued by the page"
+    },
+    "page.on('requestfailed')": {
+        "prefix": "p-on-requestfailed",
+        "body": [
+            "page.on('requestfailed', request => {",
+            "\t${0:console.log(request.url());}",
+            "});"
+        ],
+        "description": "Emitted when a request fails"
+    },
+    "page.on('requestfinished')": {
+        "prefix": "p-on-requestfinished",
+        "body": [
+            "page.on('requestfailed', request => {",
+            "\t${0:console.log(request.url());}",
+            "});"
+        ],
+        "description": "Emitted when a request finishes successfully"
+    },
+    "page.on('response')": {
+        "prefix": "p-on-response",
+        "body": [
+            "page.on('response', response => {",
+            "\t${0:console.log(response.status());}",
+            "});"
+        ],
+        "description": "Emitted when a response is received"
+    },
+    "page.on('worker')": {
+        "prefix": "p-on-worker",
+        "body": [
+            "page.on('worker', worker => {",
+            "\t${0:console.log(worker.url());}",
+            "});"
+        ],
+        "description": "Emitted when a dedicated `WebWorker` is spawned by the page"
+    },
+    "expect.configure()": {
+        "prefix": "p-config-expect",
+        "body": [
+            "const slowExpect = expect.configure({ timeout: 10000 });",
+            "const softExpect = expect.configure({ soft: true });",
+            "await slowExpect(${1:actual}).${2:assertionMethod};",
+            "await softExpect(${3:actual}).${4:assertionMethod};"
+        ],
+        "description": "create pre-configured expect instance with its own defaults such as timeout and soft"
+    },
+    "Sample playwright test": {
+        "prefix": "p-sample",
+        "body": [
+            "const { chromium } = require('playwright');",
+            "",
+            "(async () => {",
+            "\tconst browser = await chromium.launch();",
+            "\tconst page = await browser.newPage();",
+            "",
+            "\t$0",
+            "",
+            "\tawait browser.close();",
+            "})();"
+        ],
+        "description": "Creates a basic usage example of a page"
+    },
+    "drag and drop example": {
+        "prefix": "p-dragdrop-sample",
+        "body": [
+            "// Drags the mouse from a point",
+            "await page.mouse.move($1);",
+            "await page.mouse.down();",
+            "",
+            "// Drops the mouse to another point",
+            "await page.mouse.move($2);",
+            "await page.mouse.up();"
+        ],
+        "description": "Creates an example that drags the mouse from a point and drops it to another point"
+    },
+    "page.locator.filter": {
+        "prefix": "p-locator-filter",
+        "description": "Playwright page locator",
+        "body": [
+            "await this.page.locator('${1:selector}').filter({ ${2|hasNotText,hasNot|}: $3 });"
         ]
     }
 }
